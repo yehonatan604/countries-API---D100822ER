@@ -1,4 +1,5 @@
 import { countries } from "./countries.service.js";
+import { updateData } from "./localStorage.service.js";
 
 const searchInput = document.getElementById('searchInput');
 const cards = document.getElementById('cards');
@@ -27,7 +28,9 @@ const createCard = (country) => {
 
     const heart = document.createElement('i');
     heart.className = 'fa fa-heart';
-
+    heart.addEventListener('click', () => {
+        updateData(country.name.common);
+    })
 
     card.appendChild(cardImg);
 
