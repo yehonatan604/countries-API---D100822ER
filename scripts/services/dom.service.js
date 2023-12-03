@@ -1,5 +1,5 @@
 import { countries } from "./countries.service.js";
-import { updateData } from "./localStorage.service.js";
+import { getData, likedCountries, updateData } from "./localStorage.service.js";
 
 const searchInput = document.getElementById('searchInput');
 const cards = document.getElementById('cards');
@@ -27,10 +27,22 @@ const createCard = (country) => {
     cardFooter.className = 'card-footer d-flex justify-content-center mb-2';
 
     const heart = document.createElement('i');
-    heart.className = 'fa fa-heart';
     heart.addEventListener('click', () => {
         updateData(country.name.common);
-    })
+        if (heart.classList[heart.classList.length - 1] == 'text-dark') {
+            heart.className = 'fa fa-heart text-danger'
+        } else {
+            heart.className = 'fa fa-heart text-dark'
+        }
+    });
+
+    let isLiked = false;
+    getData();
+    if (likedCountries.includes(country.name.common)) {
+        isLiked = true;
+    }
+
+    heart.className = `fa fa-heart ${isLiked ? 'text-danger' : 'text-dark'}`;
 
     card.appendChild(cardImg);
 
