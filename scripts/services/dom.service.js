@@ -28,6 +28,7 @@ const createCard = (country) => {
     const heart = document.createElement('i');
     heart.className = 'fa fa-heart';
 
+
     card.appendChild(cardImg);
 
     cardBody.appendChild(cardTitle);
